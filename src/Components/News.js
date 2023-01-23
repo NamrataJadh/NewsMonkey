@@ -9,7 +9,7 @@ class News extends Component {
         <h3>News Monkey - Latest Updates from All over the world...!</h3>
             <div className="row">
                 <div className="col-md-4">
-                        <NewsItem/>
+                        <NewsItem title='mytitle' desc='mydesc' imgUrl='myimage' newsUrl='TBD'/>
                 </div>
                 <div className="col-md-4">
                         <NewsItem/>
