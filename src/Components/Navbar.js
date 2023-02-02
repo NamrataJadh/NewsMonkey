@@ -14,14 +14,39 @@ export default class Navbar extends Component {
                             <li className="nav-item">
                             <a className="nav-link" aria-current="page" href="/">IndiaNews</a>
                             </li>
-                            <li className="nav-item">
-                            <a className="nav-link" href="/">WorldNews</a>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                WorldNews
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="/">US</a></li>
+                                    <li><a className="dropdown-item" href="/">UK</a></li>
+                                    <li><a className="dropdown-item" href="/">China</a></li>
+                                    <li><a className="dropdown-item" href="/">Japan</a></li>
+                                    <li><a className="dropdown-item" href="/">France</a></li>
+                                    <li><a className="dropdown-item" href="/">Germany</a></li>
+                                </ul>
                             </li>
                             <li className="nav-item">
-                            <a className="nav-link" href="/">Budget2023</a>
+                            <a className="nav-link" href="/">Business</a>
                             </li>
                             <li className="nav-item">
-                            <a className="nav-link" href="/">Politics</a>
+                            <a className="nav-link" href="/">Entertainment</a>
+                            </li>
+                            <li className="nav-item">
+                            <a className="nav-link" href="/">General</a>
+                            </li>
+                            <li className="nav-item">
+                            <a className="nav-link" href="/">Health</a>
+                            </li>
+                            <li className="nav-item">
+                            <a className="nav-link" href="/">Science</a>
+                            </li>
+                            <li className="nav-item">
+                            <a className="nav-link" href="/">Sports</a>
+                            </li>
+                            <li className="nav-item">
+                            <a className="nav-link" href="/">Technology</a>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,19 +59,6 @@ export default class Navbar extends Component {
                                     <li><a className="dropdown-item" href="/">#Bitcoin</a></li>
                                     <li><a className="dropdown-item" href="/">#SharkTank</a></li>
                                     <li><a className="dropdown-item" href="/">#MicrosoftLayoffs</a></li>
-                                </ul>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Categories
-                                </a>
-                                <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="/">Movies</a></li>
-                                    <li><a className="dropdown-item" href="/">Cricket</a></li>
-                                    <li><a className="dropdown-item" href="/">Education</a></li>
-                                    <li><a className="dropdown-item" href="/">Business</a></li>
-                                    <li><a className="dropdown-item" href="/">Fashion</a></li>
-                                    <li><a className="dropdown-item" href="/">Buzz</a></li>
                                 </ul>
                             </li>
                         </ul>
