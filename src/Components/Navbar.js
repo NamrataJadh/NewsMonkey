@@ -20,9 +20,6 @@ export default class Navbar extends Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li className="nav-item">
-                                    <Link className="nav-link" aria-current="page" to="/">IndiaNews</Link>
-                                </li>
                                 {/* <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle"
                                         to="/"
@@ -40,13 +37,13 @@ export default class Navbar extends Component {
                                         <li><a className="dropdown-item" to="/">Germany</a></li>
                                     </ul>
                                 </li> */}
+                                <li className="nav-item"><Link className="nav-link" to="/general">General</Link></li>
                                 <li className="nav-item"><Link className="nav-link" to="/business">Business</Link></li>
                                 <li className="nav-item"><Link className="nav-link" to="/entertainment">Entertainment</Link></li>
-                                <li className="nav-item"><Link className="nav-link" to="/general">General</Link></li>
                                 <li className="nav-item"><Link className="nav-link" to="/health">Health</Link></li>
                                 <li className="nav-item"><Link className="nav-link" to="/science">Science</Link></li>
                                 <li className="nav-item"><Link className="nav-link" to="/sports">Sports</Link></li>
-                                <li className="nav-item"><Link className="nav-link" to="/technology">Technology</Link></li>
+                                <li className="nav-item"><Link className="nav-link" to="/Technology">Technology</Link></li>
                             </ul>
                             <form className="d-flex" role="search">
                                 <input

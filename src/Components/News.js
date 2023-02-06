@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 class News extends Component {
     static defaultProps = {
         //Default Properties
-        country: 'in',
+        // country: 'in',
         category: 'general'
     }
 
@@ -61,7 +61,7 @@ class News extends Component {
         this.setState({loading: true})
         let data = await fetch(url);
         let newData = await data.json();
-        //console.log(newData);
+        console.log(newData);
         this.setState({
             articles: newData.articles,
             totalResults: newData.totalResults,
@@ -77,7 +77,14 @@ class News extends Component {
             <div className="row">
                 {!this.state.loading && this.state.articles.map((e) => {
                     return <div className="col-md-4" key={e.url}>
-                    <NewsItem title={e.title?e.title.slice(0,100):""} desc={e.description?e.description.slice(0,240):""} imgUrl={e.urlToImage} newsUrl={e.url}/>
+                    <NewsItem 
+                        title={e.title?e.title.slice(0,90):""} 
+                        desc={e.description?e.description.slice(0,120):""} 
+                        imgUrl={e.urlToImage} 
+                        newsUrl={e.url}
+                        source={e.source.name}
+                        date={e.publishedAt}/>
+                        
                     </div>
                 })}
             </div>
