@@ -16,8 +16,12 @@ class News extends Component {
         category: PropTypes.string
     }
 
-    constructor(){
-        super();
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    constructor(props){
+        super(props);
         this.state = {
             articles: [],
             loading: false,
@@ -25,48 +29,34 @@ class News extends Component {
             totalResults: 0,
             pageSize:15
         }
+        document.title = `${this.capitalizeFirstLetter(this.props.category)} - NewsMonkey`;
     }
 
-    handlePrev = async ()=> {
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2a7b2fc51ab64ad49ccbf234cdc63c2e&page=${this.state.page-1}&pageSize=${this.state.pageSize}`;
+    async updateNews(){
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2a7b2fc51ab64ad49ccbf234cdc63c2e&page=${this.state.page}&pageSize=${this.state.pageSize}`;
         this.setState({loading: true})
         let data = await fetch(url);
         let newData = await data.json();
-        //console.log(newData);
-        this.setState({
-            articles: newData.articles,
-            page: this.state.page-1,
-            loading: false
-        })
-    } 
-    
-    handleNext = async ()=> {
-        //console.log('Loading Next Page.....')
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2a7b2fc51ab64ad49ccbf234cdc63c2e&page=${this.state.page+1}&pageSize=${this.state.pageSize}`;
-        this.setState({loading: true})
-        let data = await fetch(url);
-        let newData = await data.json();
-        //console.log(newData);
-        this.setState({
-            articles: newData.articles,
-            page: this.state.page+1,
-            loading: false
-        })
-        
-    }
-
-    async componentDidMount(){
-        //console.log('On Mount...')
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2a7b2fc51ab64ad49ccbf234cdc63c2e&${this.state.page}&pageSize=${this.state.pageSize}`;
-        this.setState({loading: true})
-        let data = await fetch(url);
-        let newData = await data.json();
-        console.log(newData);
         this.setState({
             articles: newData.articles,
             totalResults: newData.totalResults,
             loading: false
-         })
+        })
+    }
+
+    handlePrev = async ()=> {
+        await this.setState({page: this.state.page-1});
+        this.updateNews();
+    } 
+    
+    handleNext = async ()=> {
+        await this.setState({page: this.state.page+1});
+        this.updateNews();
+    }
+
+    async componentDidMount(){
+        this.updateNews();
+        // console.log(newData);
     }
 
   render() {

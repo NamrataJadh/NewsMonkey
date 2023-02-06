@@ -12,7 +12,7 @@ export default class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className='main_style'>
             <Navbar/>
             <Routes>
                 <Route exact path="/" element={<News key="general" country="in" category="general"/>} />
