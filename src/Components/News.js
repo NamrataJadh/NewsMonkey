@@ -34,16 +34,20 @@ class News extends Component {
     }
 
     async updateNews(){
+        this.props.setProgress(10);
         const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2a7b2fc51ab64ad49ccbf234cdc63c2e&page=${this.state.page}&pageSize=${this.state.pageSize}`;
         this.setState({loading: true})
         let data = await fetch(url);
+        this.props.setProgress(30);
         let newData = await data.json();
+        this.props.setProgress(70);
         console.log(newData);
         this.setState({
             articles: newData.articles,
             totalResults: newData.totalResults,
             loading: false
         })
+        this.props.setProgress(100);
     }
 
     // handlePrev = async ()=> {
@@ -55,8 +59,10 @@ class News extends Component {
     //     await this.setState({page: this.state.page+1});
     //     this.updateNews();
     // }
+
     fetchMoreData = async() => {
         this.setState({page: this.state.page+1})
+
         const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2a7b2fc51ab64ad49ccbf234cdc63c2e&page=${this.state.page+1}&pageSize=${this.state.pageSize}`;
         let data = await fetch(url);
         let newData = await data.json();
@@ -73,27 +79,30 @@ class News extends Component {
 
   render() {
     return (
-      <div className='container text-center p-4'>
-        <h3 style={{margin: '1.5rem'}}>News Monkey - Latest Updates from All over the world...!</h3>
-        {this.state.loading && <Spinner/>}
+      <div className='my-5 pt-3 px-2'>
+        <h3 className='text-center' style={{margin: '1.5rem'}}>News Monkey - Latest Updates from All over the world...!</h3>
+        {/* {this.state.loading && <Spinner/>} */}
+
             <InfiniteScroll 
             dataLength={ this.state.articles.length } 
             next={ this.fetchMoreData } 
             hasMore={ this.state.articles.length !== this.state.totalResults }
             loader={<Spinner/>}>
-                <div className="row">
-                    {this.state.articles.map((e,i) => {
-                        return <div className="col-md-4" key={i}>
-                        <NewsItem 
-                            title={e.title?e.title.slice(0,90):""} 
-                            desc={e.description?e.description.slice(0,120):""} 
-                            imgUrl={e.urlToImage} 
-                            newsUrl={e.url}
-                            source={e.source.name}
-                            date={e.publishedAt}/>
-                            
-                        </div>
-                    })}
+                <div className='container'>
+                    <div className="row">
+                        {this.state.articles.map((e,i) => {
+                            return <div className="col-md-4" key={i}>
+                            <NewsItem 
+                                title={e.title?e.title.slice(0,90):""} 
+                                desc={e.description?e.description.slice(0,120):""} 
+                                imgUrl={e.urlToImage} 
+                                newsUrl={e.url}
+                                source={e.source.name}
+                                date={e.publishedAt}/>
+                                
+                            </div>
+                        })}
+                    </div>
                 </div>
             </InfiniteScroll>
             {/* {!this.state.loading && <div className="container d-flex justify-content-between">
