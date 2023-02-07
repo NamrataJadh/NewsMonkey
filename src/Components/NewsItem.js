@@ -11,12 +11,13 @@ class NewsItem extends Component {
             {source}
           </span>
           <img src={imgUrl} className="card-img-top" alt="Unavailable..." style={{height: '14rem'}} />
-            <div className="card-body d-flex flex-column mb-4 justify-content-evenly">
+            <div className="card-body d-flex flex-column justify-content-between">
               <h5 className="card-title">{title}...</h5>
               <p className="card-text">{desc}...</p>
-              <p className="card-text"><sub className="text-muted">Last updated {new Date(date).toUTCString()}</sub></p>
-              <a href={newsUrl} target="_blank" rel='noreferrer' className="btn btn-sm btn-primary align-self-center">Read More...</a>
+              <a href={newsUrl} target="_blank" rel='noreferrer' 
+                 className="btn btn-sm btn-primary align-self-center">Read More...</a>
             </div>
+            <p className="card-text mb-3"><sub className="text-muted">Last updated: {new Date(date).toUTCString()}</sub></p>
         </div>
       </div>
     )

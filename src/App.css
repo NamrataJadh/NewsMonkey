@@ -4,8 +4,9 @@
      background: linear-gradient(0deg, rgba(192,167,167,1) 0%, rgba(237,243,249,1) 65%);
      border: 1px solid c0a7a7;
      border-radius:10px;
-     box-shadow: 3px 1px #c0a7a7;
+     /* box-shadow: 2px 2px #817b7b; */
 }
+
 
 .main_style{
     background: #eedbc5;
