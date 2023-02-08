@@ -28,20 +28,20 @@ class News extends Component {
             loading: false,
             page: 1,
             totalResults: 0,
-            pageSize:15
+            pageSize:15 
         }
         document.title = `${this.capitalizeFirstLetter(this.props.category)} - NewsMonkey`;
     }
 
     async updateNews(){
         this.props.setProgress(10);
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2a7b2fc51ab64ad49ccbf234cdc63c2e&page=${this.state.page}&pageSize=${this.state.pageSize}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.state.pageSize}`;
         this.setState({loading: true})
         let data = await fetch(url);
         this.props.setProgress(30);
         let newData = await data.json();
         this.props.setProgress(70);
-        console.log(newData);
+        // console.log(newData);
         this.setState({
             articles: newData.articles,
             totalResults: newData.totalResults,
@@ -63,7 +63,7 @@ class News extends Component {
     fetchMoreData = async() => {
         this.setState({page: this.state.page+1})
 
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2a7b2fc51ab64ad49ccbf234cdc63c2e&page=${this.state.page+1}&pageSize=${this.state.pageSize}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page+1}&pageSize=${this.state.pageSize}`;
         let data = await fetch(url);
         let newData = await data.json();
         this.setState({
@@ -79,8 +79,8 @@ class News extends Component {
 
   render() {
     return (
-      <div className='my-5 pt-3 px-2'>
-        <h3 className='text-center' style={{margin: '1.5rem'}}>News Monkey - Latest Updates from All over the world...!</h3>
+      <>
+        <h3 className='text-center mt-5 pt-4'>News Monkey - Latest Updates from All over the world...!</h3>
         {/* {this.state.loading && <Spinner/>} */}
 
             <InfiniteScroll 
@@ -109,7 +109,7 @@ class News extends Component {
                 <button disabled={this.state.page<=1} type="button" className="btn btn-primary" onClick={this.handlePrev}>&larr; Prev</button>
                 <button disabled={this.state.page+1 > Math.ceil(this.state.totalResults/this.state.pageSize)} type="button" className="btn btn-primary" onClick={this.handleNext}>Next &rarr;</button>
             </div>} */}
-      </div>
+      </>
     )
   }
 }

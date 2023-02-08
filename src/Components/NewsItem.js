@@ -5,7 +5,7 @@ class NewsItem extends Component {
   render() {
     let {title, desc, imgUrl, newsUrl, source, date} = this.props;
     return (
-        <div className="card my-4 newsItem_style text-center">
+        <div className="card my-5 newsItem_style text-center">
               <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{left: '90%', zIndex:'1'}}>
                 {source}
               </span>
